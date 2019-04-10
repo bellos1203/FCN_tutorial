@@ -58,7 +58,30 @@ class FCN:
 
         with tf.variable_scope('vgg_16', values=[bgr]) as sc:
             with slim.arg_scope([slim.conv2d, slim.fully_connected, slim.max_pool2d]):
-                # TODO 3: define vgg-16 network with fully convolutional layers
+                # Mission 7: define vgg-16 network with fully convolutional layers
+                self.conv1_2 = slim.repeat(bgr, 2, slim.conv2d, 64, 
+                        [3,3], scope='conv1')
+                self.pool1 = slim.max_pool2d(self.conv1_2, [2,2], scope='pool1')
+                '''
+                Fill in the blank
+                '''
+                self.conv2_2 = 
+                self.pool2 = 
+
+                self.conv3_3 = 
+                self.pool3 = 
+                
+                self.conv4_3 = 
+                self.pool4 = 
+
+                self.conv5_3 = 
+                self.pool5 = 
+                
+                self.fc6 = slim.conv2d(self.pool5, 4096, [7,7], padding='SAME', scope='fc6')
+                self.fc6 = slim.dropout(self.fc6, 0.5, is_training=train, scope='dropout6')
+
+                self.fc7 = slim.conv2d(self.fc6, 4096, [1,1], padding='SAME', scope='fc7')
+                self.fc7 = slim.dropout(self.fc7, 0.5, is_training=train, scope='dropout7')
 
                 self.score_fr = slim.conv2d(self.fc7, num_classes, [1,1], padding='SAME',
                         activation_fn=None, normalizer_fn=None, scope='score_fr')
@@ -72,13 +95,12 @@ class FCN:
                     name='up', factor=32)
 
         elif net_type == 'fcn_16s':
-            # TODO 4: implement fcn_16s
+            # Mission 8: implement fcn_16s
             TODO = True
         elif net_type == 'fcn_8s':
-            # TODO 4: implement fcn_8s
+            # Mission 9: implement fcn_8s
             TODO = True
         else:
-            # TODO 5: implement deconvNet
             TODO = True
 
         self.pred_up = tf.argmax(self.upscore, dimension=3)
