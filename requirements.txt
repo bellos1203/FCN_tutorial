@@ -2,4 +2,4 @@ Pillow
 numpy
 scipy
 mayplotlib
-
+tensorflow>=1.9.0
