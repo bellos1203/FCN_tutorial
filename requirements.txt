@@ -1,5 +1,5 @@
 Pillow
 numpy
 scipy
-mayplotlib
+matplotlib
 tensorflow>=1.9.0
